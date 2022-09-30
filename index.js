@@ -1,6 +1,7 @@
 const process = require("process");
 const execSync = require("child_process").execSync;
 const fs = require("fs-extra");
+const globalVars = require("./globalVars");
 
 // This is for one repo. We have 5
 const srcDir = `/Users/jasonschmitt/Desktop/Development/workstuff/css-repo-test/build/css`;
@@ -12,6 +13,7 @@ try {
   process.chdir("../css-repo-test");
   console.log("directory has successfully been changed");
   console.log("now run command");
+  console.log(globalVars);
 
   // import { execSync } from 'child_process';  // replace ^ if using ES modules
 
