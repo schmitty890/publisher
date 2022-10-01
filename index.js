@@ -1,7 +1,15 @@
-const process = require("process");
-const execSync = require("child_process").execSync;
-const fs = require("fs-extra");
-const globalVars = require("./globalVars");
+// console.log("TESTING");
+
+import process from "process";
+// const process = require("process");
+// import execSync from "child_process";
+import * as child_process from "child_process";
+
+// const execSync = require("child_process").execSync;
+// const fs = require("fs-extra");
+import fs from "fs-extra";
+// const globalVars = require("./globalVars");
+// import { globalVars } from "./globalVars";
 
 // This is for one repo. We have 5
 const srcDir = `/Users/jasonschmitt/Desktop/Development/workstuff/css-repo-test/build/css`;
@@ -13,15 +21,15 @@ try {
   process.chdir("../css-repo-test");
   console.log("directory has successfully been changed");
   console.log("now run command");
-  console.log(globalVars);
+  // console.log(globalVars);
 
   // import { execSync } from 'child_process';  // replace ^ if using ES modules
 
-  const output = execSync("ls", { encoding: "utf-8" }); // the default is 'buffer'
+  const output = child_process.execSync("ls", { encoding: "utf-8" }); // the default is 'buffer'
   console.log("Output was:\n", output);
 
   // checkout the main branch (this will be the release branch)
-  execSync("git checkout main", function (err, stdout, stderr) {
+  child_process.execSync("git checkout main", function (err, stdout, stderr) {
     if (err) {
       console.error(err);
       return;
@@ -30,16 +38,19 @@ try {
   });
 
   // pull the latest from the main branch (this will be the release branch)
-  execSync("git pull origin main", function (err, stdout, stderr) {
-    if (err) {
-      console.error(err);
-      return;
+  child_process.execSync(
+    "git pull origin main",
+    function (err, stdout, stderr) {
+      if (err) {
+        console.error(err);
+        return;
+      }
+      console.log(stdout);
     }
-    console.log(stdout);
-  });
+  );
 
   // execute gulp command to build out files (can be command from npm package as well)
-  execSync("gulp", function (err, stdout, stderr) {
+  child_process.execSync("gulp", function (err, stdout, stderr) {
     if (err) {
       console.error(err);
       return;

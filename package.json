@@ -16,5 +16,10 @@
   "bugs": {
     "url": "https://github.com/schmitty890/publisher/issues"
   },
-  "homepage": "https://github.com/schmitty890/publisher#readme"
+  "homepage": "https://github.com/schmitty890/publisher#readme",
+  "dependencies": {
+    "chalk-pipe": "^5.1.1",
+    "inquirer": "^9.1.2"
+  },
+  "type": "module"
 }
